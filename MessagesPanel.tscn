@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MessagesPanel.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.631373, 0.027451, 0.027451, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0.0313726, 0.772549, 0.027451, 1 )
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 5
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://acmesab.TTF"
+
+[sub_resource type="DynamicFont" id=3]
+size = 30
+use_filter = true
+font_data = SubResource( 2 )
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 5, 5 ) ]
+}
+
+[node name="MessagesPanel" type="Node2D"]
+light_mask = 2
+position = Vector2( 551.222, 354.896 )
+scale = Vector2( 5, 5 )
+z_index = 2
+script = ExtResource( 1 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -26.0
+margin_right = 39.0
+margin_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PanelContainer"]
+self_modulate = Color( 0.0862745, 0.74902, 0.976471, 1 )
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 72.0
+margin_bottom = 48.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 3 )
+text = "win"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/show text" = SubResource( 4 )

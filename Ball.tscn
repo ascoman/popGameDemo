@@ -1,0 +1,238 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Sprites/01.png" type="Texture" id=1]
+[ext_resource path="res://Ball.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/explosion-1.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/particleSprites/spark_05.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/particleSprites/magic_05.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.4443
+
+[sub_resource type="Animation" id=2]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Explosion:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 7 ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Explosion:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 17.373
+
+[sub_resource type="CanvasItemMaterial" id=6]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0.15625, 1, 1 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.4
+scale_random = 0.5
+color_ramp = SubResource( 8 )
+
+[sub_resource type="Gradient" id=10]
+colors = PoolColorArray( 1, 0, 0, 1, 0.96875, 1, 0, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 30.0
+radial_accel_random = 0.3
+angle = 360.0
+angle_random = 1.0
+scale = 32.0
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="CanvasItemMaterial" id=15]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.105422, 0.406626, 0.743976, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.632813, 0, 1, 0.46875, 0.46875, 0.46875, 1, 0.470588, 0.470588, 0.470588, 0.470588, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 0.518182 ), 0.0, -1.69856, 0, 0, Vector2( 1, 0 ), -0.764354, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+trail_divisor = 7
+trail_size_modifier = SubResource( 19 )
+trail_color_modifier = SubResource( 17 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 30.0
+initial_velocity_random = 0.47
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 1.0
+scale = 0.6
+scale_random = 0.1
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 206
+mass = 2.0
+script = ExtResource( 2 )
+
+[node name="ContactArea" type="Area2D" parent="."]
+space_override = 4
+gravity_point = true
+gravity = 17.0
+angular_damp = 0.1
+monitorable = false
+collision_layer = 0
+collision_mask = 8
+
+[node name="ContactAreaCol" type="CollisionShape2D" parent="ContactArea"]
+shape = SubResource( 1 )
+
+[node name="Explosion" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 1.4, 1.4 )
+z_index = 1
+texture = ExtResource( 3 )
+hframes = 8
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "init"
+anims/Born = SubResource( 2 )
+anims/explode = SubResource( 3 )
+anims/init = SubResource( 4 )
+
+[node name="BallCollision" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.078743, 0.236235 )
+texture = ExtResource( 1 )
+
+[node name="SuperballParticle" type="Particles2D" parent="Sprite"]
+material = SubResource( 6 )
+emitting = false
+amount = 3
+speed_scale = 4.0
+randomness = 1.0
+fract_delta = false
+process_material = SubResource( 9 )
+texture = ExtResource( 4 )
+
+[node name="OnFireParticle" type="Particles2D" parent="Sprite"]
+show_behind_parent = true
+emitting = false
+amount = 20
+lifetime = 0.5
+speed_scale = 3.0
+local_coords = false
+process_material = SubResource( 14 )
+
+[node name="ChargedParticle" type="Particles2D" parent="."]
+material = SubResource( 15 )
+emitting = false
+amount = 20
+speed_scale = 2.0
+local_coords = false
+process_material = SubResource( 20 )
+texture = ExtResource( 5 )
+
+[connection signal="sleeping_state_changed" from="." to="." method="_on_RigidBody2D_sleeping_state_changed"]

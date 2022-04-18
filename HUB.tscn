@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://HUB.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.898039, 0.188235, 0.0705882, 1 )
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color( 0.843137, 0.611765, 0.0588235, 0.909804 )
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://acmesab.TTF"
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+font_data = SubResource( 2 )
+
+[node name="HUB" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ScoreContainer" type="PanelContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 46.1787
+margin_top = 30.7965
+margin_right = 228.179
+margin_bottom = 107.796
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="ScoreContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 162.0
+margin_bottom = 57.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.807843, 0.890196, 0.0784314, 1 )
+text = "SCORE:  1"

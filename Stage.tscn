@@ -1,0 +1,259 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://CenterBall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Stage.gd" type="Script" id=3]
+[ext_resource path="res://HUB.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/button/Button.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/space1.png" type="Texture" id=6]
+[ext_resource path="res://big_gear1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://small_gear1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MainGear.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/particleSprites/magic_05.png" type="Texture" id=10]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.487952, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.4375, 0.446289, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+lifetime_randomness = 0.5
+emission_shape = 2
+emission_box_extents = Vector3( 640, 360, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 0.2
+scale_random = 0.2
+color_ramp = SubResource( 3 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 30.676, 31.4821 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 8, 230, 95, 95 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 126, 230, 95, 95 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 48.0
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 8, 121, 95, 95 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 126, 121, 95, 95 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 8, 12, 95, 96 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 126, 12, 95, 96 )
+
+[node name="Stage" type="Node2D"]
+position = Vector2( 0, -2.24493 )
+script = ExtResource( 3 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( 639.537, 359.766 )
+texture = ExtResource( 6 )
+
+[node name="StarsParticles" type="Particles2D" parent="Background"]
+material = SubResource( 1 )
+position = Vector2( 640, 360 )
+amount = 50
+lifetime = 2.0
+randomness = 1.0
+visibility_rect = Rect2( -640, -360, 1280, 720 )
+process_material = SubResource( 4 )
+texture = ExtResource( 10 )
+
+[node name="MainGear" parent="." instance=ExtResource( 9 )]
+position = Vector2( 626.716, 359.967 )
+
+[node name="CenterBall" parent="." instance=ExtResource( 1 )]
+position = Vector2( 627.242, 358.618 )
+scale = Vector2( 1.10897, 1.10897 )
+z_index = 1
+
+[node name="big_gear1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 899.775, 579.3 )
+
+[node name="small_gear1" parent="." instance=ExtResource( 8 )]
+position = Vector2( 848.574, 542.477 )
+
+[node name="small_gear_fixed" type="StaticBody2D" parent="."]
+position = Vector2( 848.574, 542.477 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="small_gear_fixed"]
+position = Vector2( 0, 6.10352e-05 )
+shape = SubResource( 5 )
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( 848.574, 542.477 )
+node_a = NodePath("../small_gear_fixed")
+node_b = NodePath("../small_gear1")
+
+[node name="RigidBody2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 688.691, 265.106 )
+
+[node name="RigidBody2D2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 430.948, 281.683 )
+
+[node name="RigidBody2D3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 568.926, 414.446 )
+
+[node name="RigidBody2D4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 450.547, 405.518 )
+
+[node name="RigidBody2D5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 561.328, 172.375 )
+
+[node name="RigidBody2D6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 716.927, 194.375 )
+
+[node name="RigidBody2D7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 536.129, 235.974 )
+
+[node name="RigidBody2D8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480.838, 517.772 )
+
+[node name="RigidBody2D9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 833.326, 410.209 )
+
+[node name="RigidBody2D10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 820.271, 253.174 )
+
+[node name="RigidBody2D11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 770.454, 313.101 )
+
+[node name="RigidBody2D12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 622.324, 171.631 )
+
+[node name="RigidBody2D13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 471.929, 223.774 )
+
+[node name="RigidBody2D14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 692.763, 475.664 )
+
+[node name="RigidBody2D15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 835.416, 347.61 )
+
+[node name="RigidBody2D16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 500.647, 307.976 )
+
+[node name="RigidBody2D17" parent="." instance=ExtResource( 2 )]
+position = Vector2( 752.115, 491.541 )
+
+[node name="RigidBody2D18" parent="." instance=ExtResource( 2 )]
+position = Vector2( 676.029, 547.605 )
+
+[node name="RigidBody2D19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 565.98, 506.489 )
+
+[node name="RigidBody2D20" parent="." instance=ExtResource( 2 )]
+position = Vector2( 517.536, 459.15 )
+
+[node name="RigidBody2D21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 755.011, 415.483 )
+
+[node name="RigidBody2D22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 574.581, 564.958 )
+
+[node name="RigidBody2D23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 448.694, 344.841 )
+
+[node name="RigidBody2D24" parent="." instance=ExtResource( 2 )]
+position = Vector2( 824.574, 474.339 )
+
+[node name="RigidBody2D25" parent="." instance=ExtResource( 2 )]
+position = Vector2( 736.006, 547.605 )
+
+[node name="RigidBody2D26" parent="." instance=ExtResource( 2 )]
+position = Vector2( 785.005, 199.774 )
+
+[node name="RigidBody2D27" parent="." instance=ExtResource( 2 )]
+position = Vector2( 504, 170.375 )
+
+[node name="RigidBody2D28" parent="." instance=ExtResource( 2 )]
+position = Vector2( 430.948, 467.541 )
+
+[node name="RigidBody2D29" parent="." instance=ExtResource( 2 )]
+position = Vector2( 627.601, 236 )
+
+[node name="RigidBody2D30" parent="." instance=ExtResource( 2 )]
+position = Vector2( 676.029, 144.321 )
+
+[node name="RigidBody2D31" parent="." instance=ExtResource( 2 )]
+position = Vector2( 619, 462.245 )
+
+[node name="RigidBody2D32" parent="." instance=ExtResource( 2 )]
+position = Vector2( 669, 416.245 )
+
+[node name="RigidBody2D33" parent="." instance=ExtResource( 2 )]
+position = Vector2( 520, 371.245 )
+
+[node name="RigidBody2D34" parent="." instance=ExtResource( 2 )]
+position = Vector2( 577, 293.245 )
+
+[node name="RigidBody2D35" parent="." instance=ExtResource( 2 )]
+position = Vector2( 707, 340.245 )
+
+[node name="HUB" parent="." instance=ExtResource( 4 )]
+
+[node name="difTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="TouchButtonShoot" type="TouchScreenButton" parent="."]
+position = Vector2( 1000, 453.212 )
+scale = Vector2( 1.92105, 1.92105 )
+normal = SubResource( 6 )
+pressed = SubResource( 7 )
+shape = SubResource( 8 )
+shape_visible = false
+passby_press = true
+action = "shoot"
+visibility_mode = 1
+
+[node name="TouchButtonL" type="TouchScreenButton" parent="."]
+position = Vector2( 40, 467.541 )
+scale = Vector2( 1.5, 1.5 )
+normal = SubResource( 9 )
+pressed = SubResource( 10 )
+shape = SubResource( 8 )
+shape_visible = false
+passby_press = true
+action = "ui_left"
+visibility_mode = 1
+
+[node name="TouchButtonR" type="TouchScreenButton" parent="."]
+position = Vector2( 184, 466.353 )
+scale = Vector2( 1.5, 1.5 )
+normal = SubResource( 11 )
+pressed = SubResource( 12 )
+shape = SubResource( 8 )
+shape_visible = false
+passby_press = true
+action = "ui_right"
+visibility_mode = 1
+
+[connection signal="timeout" from="difTimer" to="." method="_on_difTimer_timeout"]
